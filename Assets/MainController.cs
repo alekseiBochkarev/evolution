@@ -17,7 +17,7 @@ public class MainController : MonoBehaviour
     void Start()
     {
         StartFood();
-        Evolution();
+        StartEvolution();
         //Boids();
     }
     //другой вид бактерий (эксперимент) - не едят друг друга но двигаются стаей
@@ -28,20 +28,33 @@ public class MainController : MonoBehaviour
             GameObject b = Instantiate(boidPrefab, new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0), Quaternion.identity);
         }
     }
-    //for bacteriums start value was 100
-    private void Evolution()
+    //for bacteriums start,after now value was 100
+    private void StartEvolution()
     {
+        //инициализация первых бактерий
         for (int i = 0; i < 10; i++)
         {
-            Genome genome = new Genome(64);
-            GameObject b = Instantiate(bacteriumPrefab, new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0), Quaternion.identity);
-            b.name = "bacterium";
-            b.GetComponent<AI>().Init(genome);
+            CreateFirstLife();
         }
         
     }
 
-     private void StartFood ()
+    private void CreateFirstLife ()
+    {
+        Genome genome = new Genome(64);
+        Vector3 vector3 = new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0);
+        GameObject b = CreateLife(vector3);
+        b.GetComponent<AI>().Init(genome);
+    }
+
+    private GameObject CreateLife (Vector3 vector3)
+    {
+        GameObject b = Instantiate(bacteriumPrefab, vector3, Quaternion.identity);
+        b.name = "bacterium";
+        return b;
+    }
+
+      private void StartFood ()
     {
         for (int i = 0; i < 2000; i++)
         {
@@ -65,9 +78,5 @@ public class MainController : MonoBehaviour
         frame++;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
