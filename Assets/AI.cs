@@ -250,6 +250,7 @@ public class AI : MonoBehaviour
 
     private void CreateNewLife (float energy)
     {
+        
         GameObject b = (GameObject)Object.Instantiate(Resources.Load("m1", typeof(GameObject)), new Vector3(0, 0, 0), Quaternion.identity);
         b.transform.position = transform.position;
         b.name = "bacterium";

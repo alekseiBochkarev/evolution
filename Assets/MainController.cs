@@ -49,7 +49,7 @@ public class MainController : MonoBehaviour
 
     private GameObject CreateLife (Vector3 vector3)
     {
-        GameObject b = Instantiate(bacteriumPrefab, vector3, Quaternion.identity);
+        GameObject b = (GameObject)Object.Instantiate(Resources.Load("m1", typeof(GameObject)), vector3, Quaternion.identity);
         b.name = "bacterium";
         return b;
     }
