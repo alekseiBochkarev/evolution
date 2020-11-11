@@ -58,11 +58,11 @@ public class MainController : MonoBehaviour
     {
         for (int i = 0; i < 2000; i++)
         {
-            GetFood();
+            SetFood();
         }
     }
 
-    private void GetFood ()
+    private void SetFood ()
     {   
         GameObject food = Instantiate(foodPrefab, new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0), Quaternion.identity);
             food.name = "food";
@@ -72,8 +72,8 @@ public class MainController : MonoBehaviour
     {
         if(frame % 1 == 0)
         {
-            GetFood();
-            GetFood();
+            SetFood();
+            SetFood();
         }
         frame++;
     }
