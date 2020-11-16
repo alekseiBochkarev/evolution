@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Genome
 {
-    public static int skillCount = 5;
+    public int skillCount = 5;
     //веса - это веса для скалярного произведения (для нейронной сети)
     public float[] weights;
     //скилы - это кормление, атака, защита и размер (может быть от 0 до 4)

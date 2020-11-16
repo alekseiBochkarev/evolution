@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyModel
+public class EnemyModel : EvoElement
 {
     public delegate void PositionEvent(Vector3 position);
     public event PositionEvent OnPositionChanged;
 
-    private static int[] _skillsTotal = new int[4];
-    public static int [] skillsTotal
+    private int[] _skillsTotal = new int[4];
+    public int [] skillsTotal
     {
         get
         {
@@ -109,18 +109,8 @@ public class EnemyModel
             }
         }
     }
-    private Color _col;
-    public Color col
-    {
-        get
-        {
-            return _col;
-        }
-        set
-        {
-            _col = value;
-        }
-    }
+    public Color col;
+   
 
     private float _size;
     public float size
@@ -240,18 +230,7 @@ public class EnemyModel
         }
     }
 
-    private Rigidbody2D _rb;
-    public Rigidbody2D rb
-    {
-        get
-        {
-            return _rb;
-        }
-        set
-        {
-            rb = value;
-        }
-    }
+    
 
 
     //пока не использую, буду использовать для движения 8965 023 10 82
@@ -275,6 +254,62 @@ public class EnemyModel
         }
     }
 
-    
+    public void Init(Genome g)
+    {
+        genome = g;
+        col = new Color(0.1f, 0.1f, 0.25f, 1f);
+        size = 0.75f;
+        //вот это нужно будет полностью переработать. сейчас завязка на характеристики (нужно будет сделать подругому)
+        // for (int i = 0; i < Genome.skillCount; i++)
+        for (int i = 0; i < g.skillCount; i++)
+        {
+            //for what?
+            skillsTotal[g.skills[i]]++;
+            //too strange characteristic init
+            if (g.skills[i] == 0)
+            {
+                foodSkill++;
+                col.g += 0.2f;
+            }
+            else if (g.skills[i] == 1)
+            {
+                attackSkill++;
+                col.r += 0.25f;
+            }
+            else if (g.skills[i] == 2)
+            {
+                defSkill++;
+                col.b += 0.25f;
+            }
+            else if (g.skills[i] == 3)
+            {
+                size += 0.5f;
+            }
+        }
+
+        gameObject.GetComponent<EnemyView>().SetSize(size);
+        //transform.localScale = new Vector3(size, size, size);
+        gameObject.GetComponent<EnemyView>().SetColor(col);
+        //gameObject.GetComponent<SpriteRenderer>().color = col;
+
+        //здесь какие то установки для нейронной сети (weight это похоже веса для нейросети) - depend on moving
+        nn = new NN(inputsCount, 8, 4);
+        for (int i = 0; i < inputsCount; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                nn.layers[0].weights[i, j] = genome.weights[i + j * inputsCount];
+            }
+        }
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                nn.layers[1].weights[i, j] = genome.weights[i + j * 8 + inputsCount * 8];
+            }
+        }
+    }
+
+
 
 }

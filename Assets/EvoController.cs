@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class EvoController : EvoElement
 {
-    
+    public EnemyController enemyController;
 }

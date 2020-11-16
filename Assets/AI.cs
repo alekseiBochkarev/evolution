@@ -181,8 +181,9 @@ public class AI : MonoBehaviour
         col = new Color(0.1f, 0.1f, 0.25f, 1f);
         size = 0.75f;
         //вот это нужно будет полностью переработать. сейчас завязка на характеристики (нужно будет сделать подругому)
-        for (int i = 0; i < Genome.skillCount; i++)
-        {
+        // for (int i = 0; i < Genome.skillCount; i++)
+        for (int i = 0; i < g.skillCount; i++)
+            {
             //for what?
             skillsTotal[g.skills[i]]++;
             //too strange characteristic init
@@ -231,7 +232,7 @@ public class AI : MonoBehaviour
 
     public void Dead()
     {
-        for (int i = 0; i < Genome.skillCount; i++)
+        for (int i = 0; i < genome.skillCount; i++)
         {
             skillsTotal[genome.skills[i]]--;
         }
