@@ -17,7 +17,7 @@ public class MainController : MonoBehaviour
     void Start()
     {
         StartFood();
-        StartEvolution();
+        //StartEvolution();
         //Boids();
     }
     //другой вид бактерий (эксперимент) - не едят друг друга но двигаются стаей

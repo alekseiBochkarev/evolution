@@ -436,6 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6696db965a5ac473b89936501df9de07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  area: {x: 10, y: 10}
 --- !u!1 &871021967
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,6 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c72cfa94c3e34fa2bc2e9cb6c53c23b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
 --- !u!1 &1084550692
 GameObject:
   m_ObjectHideFlags: 0

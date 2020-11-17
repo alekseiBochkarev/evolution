@@ -177,45 +177,11 @@ public class EnemyModel : EvoElement
         }
     }
 
-    private static float[] _inputs = new float[inputsCount];
-    public static float [] inputs
-    {
-        get
-        {
-            return _inputs;
-        }
-        set
-        {
-            _inputs = value;
-        }
-    }
-
-
-    private Collider2D[] _colliders;
-    public Collider2D[] colliders
-    {
-        get
-        {
-            return _colliders;
-        }
-        set
-        {
-            _colliders = value;
-        }
-    }
-
-    private static float[] _neighboursCount = new float[4];
-    public static float [] neighboursCount
-    {
-        get
-        {
-            return _neighboursCount;
-        }
-        set
-        {
-            _neighboursCount = value;
-        }
-    }
+    
+    public float [] inputs = new float[inputsCount];
+    
+    public float [] neighboursCount = new float[4];
+   
 
     private Vector3[] _vectors = new Vector3[4];
     public Vector3 [] vectors
