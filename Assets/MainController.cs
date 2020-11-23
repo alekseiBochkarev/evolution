@@ -10,6 +10,10 @@ public class MainController : MonoBehaviour
     public GameObject bacteriumPrefab;
     public GameObject boidPrefab;
     public GameObject foodPrefab;
+    private string prefabname;
+
+    public int m1Count;
+    public int playerCount;
 
     private int frame = 0;
 
@@ -36,21 +40,33 @@ public class MainController : MonoBehaviour
         {
             CreateFirstLife();
         }
-        
+        CreatePlayer();
+    }
+
+    private void CreatePlayer ()
+    {
+        prefabname = "player";
+        Genome genome = new Genome(64);
+        Vector3 vector3 = new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0);
+        GameObject b = CreateLife(vector3, prefabname);
+        b.GetComponent<AIPlayer>().Init(genome);
+        playerCount++;
     }
 
     private void CreateFirstLife ()
     {
+        prefabname = "m1";
         Genome genome = new Genome(64);
         Vector3 vector3 = new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0);
-        GameObject b = CreateLife(vector3);
+        GameObject b = CreateLife(vector3, prefabname);
         b.GetComponent<AI>().Init(genome);
+        m1Count++;
     }
 
-    private GameObject CreateLife (Vector3 vector3)
+    private GameObject CreateLife (Vector3 vector3, string name)
     {
-        GameObject b = (GameObject)Object.Instantiate(Resources.Load("m1", typeof(GameObject)), vector3, Quaternion.identity);
-        b.name = "bacterium";
+        GameObject b = (GameObject)Object.Instantiate(Resources.Load(name, typeof(GameObject)), vector3, Quaternion.identity);
+        b.name = name;
         return b;
     }
 

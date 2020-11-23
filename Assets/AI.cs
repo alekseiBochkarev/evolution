@@ -237,6 +237,7 @@ public class AI : MonoBehaviour
             skillsTotal[genome.skills[i]]--;
         }
         Destroy(gameObject);
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MainController>().m1Count--;
     }
 
     private void Eat(float food)
@@ -261,6 +262,7 @@ public class AI : MonoBehaviour
         AI ai = b.GetComponent<AI>();
         ai.Init(g);
         ai.energy = energy;
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MainController>().m1Count++;
     }
 
 }
