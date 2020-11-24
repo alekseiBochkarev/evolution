@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI : MonoBehaviour
+public class AI : MonoBehaviour, IMove, IEat
 {
     public static int[] skillsTotal = new int[4];
 

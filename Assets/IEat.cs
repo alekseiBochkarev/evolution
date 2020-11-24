@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IEat
 {
-    void Eat();
+    void Eat(float food);
 }
