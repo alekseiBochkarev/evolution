@@ -13,7 +13,9 @@ public class MainController : MonoBehaviour
     private string prefabname;
 
     public int m1Count;
+    public float m1MaxAge;
     public int playerCount;
+    public float playerMaxAge;
 
     private int frame = 0;
 

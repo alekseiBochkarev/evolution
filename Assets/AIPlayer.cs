@@ -26,6 +26,7 @@ public class AIPlayer : AI
     Collider2D[] colliders;
     private static float[] neighboursCount = new float[4];
     Vector3[] vectors = new Vector3[4];
+    MainController mainController;
 
     private Rigidbody2D rb;
 
@@ -33,7 +34,7 @@ public class AIPlayer : AI
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-
+        mainController = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MainController>();
     }
 
 
@@ -120,6 +121,9 @@ public class AIPlayer : AI
     public override void AgeCalculation()
     {
         age += Time.deltaTime;
+        if (age > mainController.playerMaxAge) {
+            mainController.playerMaxAge = age;
+        }
     }
 
     public override void LifeEnergyCalculate()
@@ -238,7 +242,7 @@ public class AIPlayer : AI
             skillsTotal[genome.skills[i]]--;
         }
         Destroy(gameObject);
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MainController>().playerCount--;
+        mainController.playerCount--;
     }
 
     public override void Eat(float food)
@@ -263,7 +267,7 @@ public class AIPlayer : AI
         AIPlayer aiPlayer = b.GetComponent<AIPlayer>();
         aiPlayer.Init(g);
         aiPlayer.energy = energy;
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MainController>().playerCount++;
+        mainController.playerCount++;
     }
 
 }

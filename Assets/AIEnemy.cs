@@ -26,6 +26,7 @@ public class AIEnemy : AI
     Collider2D[] colliders;
     private static float[] neighboursCount = new float[4];
     Vector3[] vectors = new Vector3[4];
+    MainController mainController;
 
     private Rigidbody2D rb;
 
@@ -33,7 +34,7 @@ public class AIEnemy : AI
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-
+        mainController = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MainController>();
     }
 
 
@@ -120,6 +121,10 @@ public class AIEnemy : AI
     public override void AgeCalculation()
     {
         age += Time.deltaTime;
+        if (age > mainController.m1MaxAge)
+        {
+            mainController.m1MaxAge = age;
+        }
     }
 
     public override void LifeEnergyCalculate()
@@ -238,7 +243,7 @@ public class AIEnemy : AI
             skillsTotal[genome.skills[i]]--;
         }
         Destroy(gameObject);
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MainController>().m1Count--;
+        mainController.m1Count--;
     }
 
     public override void Eat(float food)
@@ -263,7 +268,7 @@ public class AIEnemy : AI
         AIEnemy aiEnemy = b.GetComponent<AIEnemy>();
         aiEnemy.Init(g);
         aiEnemy.energy = energy;
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MainController>().m1Count++;
+        mainController.m1Count++;
     }
 
 }
