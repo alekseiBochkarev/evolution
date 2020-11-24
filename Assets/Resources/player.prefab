@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8819951991970072448}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,13 +117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a583e46d4e2e4ec2bcfde2e26bcaa9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bacteriumPrefab: {fileID: 4191507508884536977}
-  foodSkill: 0
-  attackSkill: 0
-  defSkill: 0
-  energy: 10
-  age: 0
-  bacteriumPrefab: {fileID: 4191507508884536977}
   foodSkill: 0
   attackSkill: 0
   defSkill: 0
