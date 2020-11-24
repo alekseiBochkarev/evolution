@@ -6,13 +6,13 @@ public class AIPlayer : AI
 {
     public static int[] skillsTotal = new int[4];
 
-    public GameObject bacteriumPrefab;
+    //public GameObject bacteriumPrefab;
 
-    public int foodSkill = 0;
-    public int attackSkill = 0;
-    public int defSkill = 0;
-    public float energy = 10;
-    public float age = 0;
+    //public int foodSkill = 0;
+    //public int attackSkill = 0;
+    //public int defSkill = 0;
+    //public float energy = 10;
+    //public float age = 0;
     float damage;
 
     Color col;
@@ -50,7 +50,7 @@ public class AIPlayer : AI
 
     }
 
-    void FindGoalToMove()
+    public override void FindGoalToMove()
     {
         vision = 5f + attackSkill;
 
@@ -72,7 +72,7 @@ public class AIPlayer : AI
                 neighboursCount[0]++;
                 vectors[0] += colliders[i].gameObject.transform.position - transform.position;
             }
-            else if (colliders[i].gameObject.name == "bacterium")
+            else if (Equals(colliders[i].gameObject.name, "bacterium") || Equals(colliders[i].gameObject.name, "bacteriumPlayer"))
             {
                 AI ai = colliders[i].gameObject.GetComponent<AI>();
                 neighboursCount[1] += ai.attackSkill / 3f;
@@ -85,7 +85,7 @@ public class AIPlayer : AI
         }
     }
 
-    void Move(NN nn, float[] inputs, float[] neighboursCount, Vector3[] vectors, float vision)
+    public override void Move(NN nn, float[] inputs, float[] neighboursCount, Vector3[] vectors, float vision)
     {
         for (int i = 0; i < 4; i++)
         {
@@ -117,12 +117,12 @@ public class AIPlayer : AI
         rb.velocity = velocity;
     }
 
-    void AgeCalculation()
+    public override void AgeCalculation()
     {
         age += Time.deltaTime;
     }
 
-    void LifeEnergyCalculate()
+    public override void LifeEnergyCalculate()
     {
         // float antibiotics = 1f;
         // концентрация антибиотиков
@@ -138,7 +138,7 @@ public class AIPlayer : AI
     }
 
 
-    void OnTriggerEnter2D(Collider2D col)
+    public void OnTriggerEnter2D(Collider2D col)
     {
         if (foodSkill == 0) return;
         if (col.gameObject.name == "food")
@@ -148,11 +148,11 @@ public class AIPlayer : AI
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    public void OnCollisionEnter2D(Collision2D col)
     {
         if (age < 1f) return;
         if (attackSkill == 0) return;
-        if (Equals(col.gameObject.name, "bacterium"))
+        if (Equals(col.gameObject.name, "bacterium") || Equals(col.gameObject.name, "bacteriumPlayer"))
         {
             if (col.gameObject.GetComponent<AI>().age < 1f) return;
             Attack(col);
@@ -160,7 +160,7 @@ public class AIPlayer : AI
         }
     }
 
-    private void Attack(Collision2D col)
+    public override void Attack(Collision2D col)
     {
         //урон - максимальное из 0 либо атака текущего - защита противоположного юнита
         damage = Mathf.Max(0f, attackSkill - col.gameObject.GetComponent<AI>().defSkill);
@@ -170,12 +170,12 @@ public class AIPlayer : AI
         Eat(damage);
     }
 
-    private void RotateEnemy()
+    public override void RotateEnemy()
     {
         transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg - 90);
     }
 
-    public void Init(Genome g)
+    public override void Init(Genome g)
     {
         genome = g;
         col = new Color(0.1f, 0.1f, 0.25f, 1f);
@@ -231,7 +231,7 @@ public class AIPlayer : AI
 
 
 
-    public void Dead()
+    public override void Dead()
     {
         for (int i = 0; i < genome.skillCount; i++)
         {
@@ -241,7 +241,7 @@ public class AIPlayer : AI
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MainController>().playerCount--;
     }
 
-    private void Eat(float food)
+    public override void Eat(float food)
     {
         energy += food;
         if (energy > 16)
@@ -251,7 +251,7 @@ public class AIPlayer : AI
         }
     }
 
-    private void CreateNewLife(float energy)
+    public override void CreateNewLife(float energy)
     {
 
         GameObject b = (GameObject)Object.Instantiate(Resources.Load("player", typeof(GameObject)), new Vector3(0, 0, 0), Quaternion.identity);

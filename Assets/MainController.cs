@@ -7,7 +7,7 @@ public class MainController : MonoBehaviour
 {
     public Vector2 area = new Vector2(10f, 10f);
 
-    public GameObject bacteriumPrefab;
+    //public GameObject bacteriumPrefab;
     public GameObject boidPrefab;
     public GameObject foodPrefab;
     private string prefabname;
@@ -36,7 +36,7 @@ public class MainController : MonoBehaviour
     private void StartEvolution()
     {
         //инициализация первых бактерий
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 2; i++)
         {
             CreateFirstLife();
         }
@@ -59,7 +59,7 @@ public class MainController : MonoBehaviour
         Genome genome = new Genome(64);
         Vector3 vector3 = new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0);
         GameObject b = CreateLife(vector3, prefabname);
-        b.GetComponent<AI>().Init(genome);
+        b.GetComponent<AIEnemy>().Init(genome);
         m1Count++;
     }
 
