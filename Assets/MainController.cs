@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainController : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class MainController : MonoBehaviour
     //public GameObject bacteriumPrefab;
     public GameObject boidPrefab;
     public GameObject foodPrefab;
+
+    public GameObject finishPanel;
+    public Text finishText;
     private string prefabname;
 
     public int m1Count;
@@ -94,7 +98,26 @@ public class MainController : MonoBehaviour
             SetFood();
         }
         frame++;
+        if (m1Count <1)
+        {
+            Win();
+        } else if (playerCount <1)
+        {
+            Lose();
+        }
     }
 
-    
+    private void Win ()
+    {
+        finishPanel.SetActive(true);
+        finishText.text = "ты победил";
+    }
+
+    private void Lose()
+    {
+        finishPanel.SetActive(true);
+        finishText.text = "ты проиграл";
+    }
+
+
 }
