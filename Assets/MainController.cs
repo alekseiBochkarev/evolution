@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class MainController : MonoBehaviour
 {
     public Vector2 area = new Vector2(10f, 10f);
@@ -20,6 +21,18 @@ public class MainController : MonoBehaviour
     public float m1MaxAge;
     public int playerCount;
     public float playerMaxAge;
+
+    public enum TypeEnemys
+    {
+        blade,
+        drakula
+    }
+
+    public enum Commands
+    {
+        one = 1,
+        two = 2
+    }
 
     private int frame = 0;
 
@@ -41,17 +54,51 @@ public class MainController : MonoBehaviour
     //for bacteriums start,after now value was 100
     private void StartEvolution()
     {
+        /* old
         //инициализация первых бактерий
         for (int i = 0; i < 2; i++)
         {
             CreateFirstLife();
         }
         CreatePlayer();
+        */
+        foreach (Commands command in System.Enum.GetValues(typeof(Commands))) {
+            foreach (TypeEnemys typeEnemy in System.Enum.GetValues(typeof(TypeEnemys))) {
+                CreateEnemy((int)command, typeEnemy);
+            }
+        }
     }
 
+    //new
+    private void CreateEnemy (int command, TypeEnemys typeEnemy)
+    {
+        prefabname = typeEnemy.ToString();
+        Genome genome = new Genome(64);
+        Vector3 vector3 = new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0);
+        GameObject b = CreateLife(vector3, prefabname);
+        b.GetComponent<AI>().command = command;
+        //here we set start charackteristiks
+        b.GetComponent<AI>().Init(genome);
+        switch (command)
+        {
+            case 1:
+                {
+                    playerCount++;
+                    break;
+                }
+            case 2:
+                {
+                    m1Count++;
+                    break;
+                }
+        }
+    }
+
+    /*
+    //old
     private void CreatePlayer ()
     {
-        prefabname = "player";
+        prefabname = "blade";
         Genome genome = new Genome(64);
         Vector3 vector3 = new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0);
         GameObject b = CreateLife(vector3, prefabname);
@@ -59,15 +106,17 @@ public class MainController : MonoBehaviour
         playerCount++;
     }
 
+    //old
     private void CreateFirstLife ()
     {
-        prefabname = "m1";
+        prefabname = "drakula";
         Genome genome = new Genome(64);
         Vector3 vector3 = new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0);
         GameObject b = CreateLife(vector3, prefabname);
         b.GetComponent<AIEnemy>().Init(genome);
         m1Count++;
     }
+    */
 
     private GameObject CreateLife (Vector3 vector3, string name)
     {
@@ -78,7 +127,7 @@ public class MainController : MonoBehaviour
 
       private void StartFood ()
     {
-        for (int i = 0; i < 2000; i++)
+        for (int i = 0; i < 200; i++)
         {
             SetFood();
         }
@@ -94,8 +143,9 @@ public class MainController : MonoBehaviour
     {
         if(frame % 1 == 0)
         {
-            SetFood();
-            SetFood();
+            //if we want add food
+            // SetFood();
+           // SetFood();
         }
         frame++;
         if (m1Count <1)

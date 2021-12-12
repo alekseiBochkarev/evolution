@@ -196,7 +196,7 @@ PrefabInstance:
     - target: {fileID: 4977991153090012763, guid: cc8e32101120fa44bb132f830bb50102,
         type: 3}
       propertyPath: m_Name
-      value: wall (2)
+      value: wall
       objectReference: {fileID: 0}
     - target: {fileID: 4977991153090012763, guid: cc8e32101120fa44bb132f830bb50102,
         type: 3}
@@ -426,7 +426,7 @@ MonoBehaviour:
   area: {x: 50, y: 30}
   boidPrefab: {fileID: 2285095396350154574, guid: af0094d2239f1e140aa0e54bd2300e2a,
     type: 3}
-  foodPrefab: {fileID: 768593241845746938, guid: 2c18a974f4e83664c936f1de7c0f2ad9,
+  foodPrefab: {fileID: 2979933673409692766, guid: 36e17c923f4f241aba6792c1a5519162,
     type: 3}
   finishPanel: {fileID: 513047827}
   finishText: {fileID: 1564276789}
@@ -840,7 +840,7 @@ PrefabInstance:
     - target: {fileID: 4977991153090012763, guid: cc8e32101120fa44bb132f830bb50102,
         type: 3}
       propertyPath: m_Name
-      value: wall (3)
+      value: wall
       objectReference: {fileID: 0}
     - target: {fileID: 4977991153090012763, guid: cc8e32101120fa44bb132f830bb50102,
         type: 3}
@@ -996,7 +996,7 @@ PrefabInstance:
     - target: {fileID: 4977991153090012763, guid: cc8e32101120fa44bb132f830bb50102,
         type: 3}
       propertyPath: m_Name
-      value: wall (1)
+      value: wall
       objectReference: {fileID: 0}
     - target: {fileID: 4977991153090012763, guid: cc8e32101120fa44bb132f830bb50102,
         type: 3}

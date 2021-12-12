@@ -7,12 +7,13 @@ public class AI : MonoBehaviour, IMove, IEat
     public static int[] skillsTotal = new int[4];
 
     //public GameObject bacteriumPrefab;
-
+    public int command;
     public int foodSkill;
     public int attackSkill;
     public int defSkill;
     public float energy;
     public float age;
+    
     //float damage;
 
     //Color col;
@@ -34,7 +35,7 @@ public class AI : MonoBehaviour, IMove, IEat
 
     public virtual void FindGoalToMove ()
     {
-        
+       
     }
 
     public virtual void Move(NN nn, float[] inputs, float[] neighboursCount, Vector3[] vectors, float vision)
@@ -45,6 +46,11 @@ public class AI : MonoBehaviour, IMove, IEat
     public virtual void AgeCalculation ()
     {
         
+    }
+
+    public virtual void CollisionFromChild (Collider2D col)
+    {
+
     }
 
     public virtual void LifeEnergyCalculate ()
