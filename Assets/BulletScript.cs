@@ -31,13 +31,13 @@ public class BulletScript : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("11111");
         // Forward to the parent (or just deal with it here).
         // Let's say it has a script called "PlayerCollisionHelper" on it:
         //AI parentScript = transform.parent.GetComponent<AI>();
 
         // Let it know a collision happened:
         transform.parent.GetComponent<AI>().CollisionFromChild(col);
+        Destroy(this.gameObject);
 
     }
 

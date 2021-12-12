@@ -152,6 +152,8 @@ public class AIDrakula : AI
     public void CollisionFromChild (Collider2D col)
     {
         Debug.Log("here");
+        Eat(foodSkill);
+        Destroy(col.gameObject);
     }
 
     public void OnTriggerEnter2D(Collider2D col)
