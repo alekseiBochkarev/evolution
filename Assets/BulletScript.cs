@@ -27,6 +27,8 @@ public class BulletScript : MonoBehaviour
     {
         // Speed will be 0 before StartMovingTowards is called so this will do nothing
         Move();
+        //in future we will setActive (false)
+        Destroy(gameObject, 1f);
     }
 
     public void OnTriggerEnter2D(Collider2D col)
