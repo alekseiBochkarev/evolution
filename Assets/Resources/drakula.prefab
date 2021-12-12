@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1739724622}
   - component: {fileID: 1739724624}
   - component: {fileID: 1739724623}
+  - component: {fileID: 9016787416969721390}
   m_Layer: 0
   m_Name: drakula
   m_TagString: Player
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604284448191524278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.491223, y: -18.406174, z: 0}
+  m_LocalPosition: {x: 12.64, y: -18.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5404441593498501419}
@@ -113,7 +114,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604284448191524278}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -140,6 +141,26 @@ MonoBehaviour:
   defSkill: 0
   energy: 100
   age: 0
+--- !u!68 &9016787416969721390
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604284448191524278}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -3.2696066, y: 7.5338335}
+  - {x: -0.23476028, y: -1.9254436}
+  - {x: 3.3510504, y: 7.4041233}
+  - {x: -3.359662, y: 7.498641}
 --- !u!1001 &1604284448922666929
 PrefabInstance:
   m_ObjectHideFlags: 0
